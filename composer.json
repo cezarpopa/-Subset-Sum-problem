@@ -1,0 +1,17 @@
+{
+    "name": "cezarpopa/untitled1",
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cezarpopa\\Untitled1\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Cezar Popa",
+            "email": "cezarpopa@users.noreply.github.com"
+        }
+    ]
+}

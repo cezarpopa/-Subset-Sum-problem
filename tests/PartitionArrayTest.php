@@ -26,6 +26,54 @@ class PartitionArrayTest extends TestCase
         $this->assertEquals('-1', $divider([]));
     }
 
+
+    public function testCanSumBeFoundInSubsetsWithNegativeSum()
+    {
+        $array = [1, 2, 3, 4];
+        $divider = $this->arrayPartitioner;
+
+        $this->assertFalse($divider->canSumBeFoundInSubsets(
+            $array,
+            count($array),
+            -1)
+        );
+    }
+
+    public function testCanSumBeFoundInSubsetsWithSumEqualToTotalOfArrayElements()
+    {
+        $array = [1, 2, 3, 4];
+        $divider = $this->arrayPartitioner;
+        $sum = array_sum($array);
+
+        $this->assertTrue($divider->canSumBeFoundInSubsets(
+            $array, count($array), $sum));
+    }
+
+    public function testCanSumBeFoundInSubsetsWithRepeatedUsageOfElements() {
+        $divider = $this->arrayPartitioner;
+        $array = [2, 4]; // Test array; sum can be found by using each element once, but not by using any one element repeatedly.
+
+        $sum = 6; // Sum to find, which is equal to the sum of all elements in the array.
+        $this->assertTrue(
+            $divider->canSumBeFoundInSubsets($array, count($array), $sum)
+        );
+
+        $sum = 4; // Sum to find, which is equal to one of the elements in the array.
+        $this->assertTrue(
+            $divider->canSumBeFoundInSubsets($array, count($array), $sum)
+        );
+
+        $sum = 2; // Sum to find, which is equal to one of the elements in the array.
+        $this->assertTrue(
+            $divider->canSumBeFoundInSubsets($array, count($array), $sum)
+        );
+
+        $sum = 8; // Sum to find, which cannot be found by using the elements in the array (either singly or repeatedly).
+        $this->assertFalse(
+            $divider->canSumBeFoundInSubsets($array, count($array), $sum)
+        );
+    }
+
     public function testInvokeWithDupeValues()
     {
         $divider = $this->arrayPartitioner;

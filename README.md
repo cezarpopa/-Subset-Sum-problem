@@ -1,4 +1,4 @@
-## Partition Problem
+# Partition Problem
 
 ## Problem Description
 
